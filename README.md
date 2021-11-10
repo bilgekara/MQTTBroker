@@ -7,7 +7,7 @@ Angular - SignalR - MQTT
 - Ekranda dinlenen topic'e gore mesajın göndereildiği ilk saniye, mesajın gönderildiği son saniye
     arada geçen zaman, gelen mesaj sayısı, saniyede kaç mesaj geldiği, QoS leveli, ve son gönderilen mesaj yazdırılır.
 -# - 
-<img align="left" width="390px" src="./pic/1.png" />
-<img align="right"  width="390px" src="./pic/2.png" />
+<img align="left" width="500px" src="./pic/1.png" />
+<img align="right"  width="500px" src="./pic/2.png" />
 <br />
 <br />
