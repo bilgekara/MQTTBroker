@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31624.102
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ApiServer", "ApiServer\ApiServer.csproj", "{BB9D0C3E-D5FB-4355-AE5E-C8897490DDB9}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{BB9D0C3E-D5FB-4355-AE5E-C8897490DDB9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BB9D0C3E-D5FB-4355-AE5E-C8897490DDB9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BB9D0C3E-D5FB-4355-AE5E-C8897490DDB9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BB9D0C3E-D5FB-4355-AE5E-C8897490DDB9}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {0961499B-2529-45D4-B291-76AC9EEC1281}
+	EndGlobalSection
+EndGlobal

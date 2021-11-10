@@ -1,0 +1,8 @@
+{
+  "runtimeOptions": {
+    "additionalProbingPaths": [
+      "C:\\Users\\karab\\.dotnet\\store\\|arch|\\|tfm|",
+      "C:\\Users\\karab\\.nuget\\packages"
+    ]
+  }
+}

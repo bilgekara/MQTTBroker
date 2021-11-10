@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "EgBPAw1DpT4++5UWFE1p2owj9NFXe01Wq7MTbSiDo3h5QOK8bIXKAAKiKl40Z6xrL5h1piypajk7Rprg/jfmaw==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\karab\\Desktop\\9.11.2021\\ApiServer\\ApiServer\\ApiServer.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\karab\\.nuget\\packages\\mqttnet\\3.0.16\\mqttnet.3.0.16.nupkg.sha512"
+  ],
+  "logs": []
+}
