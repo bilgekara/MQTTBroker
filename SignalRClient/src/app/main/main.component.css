@@ -1,0 +1,172 @@
+.glow-on-hover {
+  width: 220px;
+  height: 50px;
+  border: none;
+  outline: none;
+  color: #fff;
+  background: #472b1e;
+  cursor: pointer;
+  position: relative;
+  z-index: 0;
+  border-radius: 10px;
+}
+
+.glow-on-hover:before {
+  content: '';
+  background: linear-gradient(45deg, #ce571f, #a0532f, #ce571f, #ce571f, #cc4d12, #ce571f, #ce571f);
+  position: absolute;
+  top: -2px;
+  left:-2px;
+  background-size: 400%;
+  z-index: -1;
+  filter: blur(5px);
+  width: calc(100% + 4px);
+  height: calc(100% + 4px);
+  animation: glowing 20s linear infinite;
+  opacity: 0;
+  transition: opacity .3s ease-in-out;
+  border-radius: 10px;
+}
+
+.glow-on-hover:active {
+  color: #fff;
+}
+
+.glow-on-hover:active:after {
+  background: transparent;
+}
+
+.glow-on-hover:hover:before {
+  opacity: 1;
+}
+
+.glow-on-hover:after {
+  z-index: -1;
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: #472b1e;
+  left: 0;
+  top: 0;
+  border-radius: 10px;
+}
+
+/* @keyframes glowing {
+  0% { background-position: 0 0; }
+  50% { background-position: 400% 0; }
+  100% { background-position: 0 0; }
+} */
+
+.deneme{
+  width: 40%;
+}
+/* input */
+
+.my-width {
+    width: 40%;
+    margin-right: 27px;
+  }
+  
+  .my-full-width {
+    width: 80%;
+    margin-right: 30px;
+  }
+  
+  /* button */
+  
+  .my-btn{
+    background-color: #472b1e;
+    color: white;
+    padding: 10px 25px;
+    width: 13%;
+    border-radius: 4px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+  }
+  
+  .my-btn:hover{
+    box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+  }
+  
+  .log-btn{
+  
+    float: right;
+    background-color: #3b0808;
+    color: white;
+    padding: 10px 25px;
+    width: 200px;
+    border-radius: 4px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 16px;
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+  }
+  .log-btn:hover{
+    box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+  }
+  
+  .my-btn-disable{
+  
+    background-color: #867070;
+    color: white;
+    padding: 10px 25px;
+    width: 13%;
+    border-radius: 4px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+  }
+  .my-btn-disable:hover{
+    box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+  }
+  
+  /* div */
+  
+  .my-div{
+  
+  }
+  
+  .my-div:hover{
+    box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+  }
+  
+  .my-div-buton{
+    float: right;
+  }
+  
+  .my-input{
+    float: left;
+  }
+  
+  .my-color{
+    float: right;
+    background-color: #472b1e;
+    margin-right: 270px;
+    color: transparent;
+  }
+  
+  .my-div-count{
+    float: right;
+    width: 20%;
+    text-align: center;
+    font-size: 16px;
+  
+  }
+  
+  
+  
+  .container{
+    margin-bottom: 8px;
+    width: 400px;
+    /* background-color: #a1a1a1; */
+    height: 400px;
+    /* overflow-y: scroll; */
+  }
+  
+  

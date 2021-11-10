@@ -1,0 +1,108 @@
+/* input */
+
+.my-width {
+  width: 40%;
+  margin-right: 27px;
+}
+
+.my-full-width {
+  width: 80%;
+  margin-right: 57px;
+}
+
+/* button */
+
+.my-btn{
+  background-color: #472b1e;
+  color: white;
+  padding: 10px 25px;
+  width: 13%;
+  border-radius: 4px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+}
+
+.my-btn:hover{
+  box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+}
+
+.log-btn{
+
+  float: right;
+  background-color: #3b0808;
+  color: white;
+  padding: 10px 25px;
+  width: 200px;
+  border-radius: 4px;
+  text-align: center;
+  text-decoration: none;
+  font-size: 16px;
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+}
+.log-btn:hover{
+  box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+}
+
+.my-btn-disable{
+
+  background-color: #867070;
+  color: white;
+  padding: 10px 25px;
+  width: 13%;
+  border-radius: 4px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+}
+.my-btn-disable:hover{
+  box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+}
+
+/* div */
+
+.my-div{
+
+}
+
+.my-div:hover{
+  box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+}
+
+.my-div-buton{
+  float: right;
+}
+
+.my-input{
+  float: left;
+}
+
+.my-color{
+  float: right;
+  background-color: #472b1e;
+  margin-right: 270px;
+  color: transparent;
+}
+
+.my-div-count{
+  float: right;
+  width: 20%;
+  text-align: center;
+  font-size: 16px;
+
+}
+
+
+
+.container{
+  margin-bottom: 8px;
+  width: 400px;
+  /* background-color: #a1a1a1; */
+  height: 400px;
+  /* overflow-y: scroll; */
+}
+
