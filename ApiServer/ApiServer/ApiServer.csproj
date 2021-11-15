@@ -6,6 +6,7 @@
 
   <ItemGroup>
     <PackageReference Include="MQTTnet" Version="3.0.16" />
+    <PackageReference Include="System.Diagnostics.PerformanceCounter" Version="6.0.0" />
   </ItemGroup>
 
 </Project>

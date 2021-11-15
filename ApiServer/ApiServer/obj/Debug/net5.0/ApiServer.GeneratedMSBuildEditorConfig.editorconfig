@@ -7,4 +7,4 @@ build_property.PublishSingleFile =
 build_property.IncludeAllContentForSelfExtract = 
 build_property._SupportedPlatformList = Android,iOS,Linux,macOS,Windows
 build_property.RootNamespace = ApiServer
-build_property.ProjectDir = C:\Users\karab\Desktop\9.11.2021\ApiServer\ApiServer\
+build_property.ProjectDir = C:\Users\karab\Desktop\ApiServer\ApiServer\

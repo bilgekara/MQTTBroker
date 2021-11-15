@@ -21,7 +21,7 @@ namespace ApiServer.Hubs
     public class WeatherForecast
     {
         public List<string> topicleri = new List<string>();
-        public  int QoS { get; set; }
+        public int QoS { get; set; }
         public float counti { get; set; }
         public string weat { get; set; }
     }
@@ -52,9 +52,13 @@ namespace ApiServer.Hubs
 
         static TimeSpan girisCikisFarki;
         static string calismaSuresi;
+
+        static string[] mesajlar;
+        static float snCounter = 0;
+        static float speed;
+
         #endregion
 
-        static float deneme = 0;
 
 
         #region MQTT
@@ -95,74 +99,55 @@ namespace ApiServer.Hubs
         }
 
 
-        //        public object CPUKullanimYuzdesiHesapla()
-        //        {
-        //            PerformanceCounter cpuCounter = new PerformanceCounter();
-        //            cpuCounter.CategoryName = "Processor";
-        //            cpuCounter.CounterName = "% Processor Time";
-        //            cpuCounter.InstanceName = "_Total";
+        public object CPUKullanimYuzdesiHesapla()
+        {
 
-        //            dynamic firstValue = cpuCounter.NextValue();
-        //            System.Threading.Thread.Sleep(1000);
-        //            dynamic secondValue = cpuCounter.NextValue();
+            PerformanceCounter cpuCounter = new PerformanceCounter();
 
-        //            System.Threading.Thread.Sleep(1000);
-        //            dynamic secondValue1 = cpuCounter.NextValue();
+            cpuCounter.CategoryName = "Processor";
 
-        //            System.Threading.Thread.Sleep(1000);
-        //            dynamic secondValue2 = cpuCounter.NextValue();
+            cpuCounter.CounterName = "% Processor Time";
+            cpuCounter.InstanceName = "_Total";
 
-        //            return (secondValue + secondValue1 + secondValue2) / 3;
+            dynamic firstValue = cpuCounter.NextValue();
+            System.Threading.Thread.Sleep(1000);
+            dynamic secondValue = cpuCounter.NextValue();
 
+            System.Threading.Thread.Sleep(1000);
+            dynamic secondValue1 = cpuCounter.NextValue();
 
+            System.Threading.Thread.Sleep(1000);
+            dynamic secondValue2 = cpuCounter.NextValue();
 
-        ////var currentProcess = Process.GetCurrentProcess().ProcessName;
-        ////            PerformanceCounter privateBytes =
-        ////                new PerformanceCounter(categoryName: "Process", counterName: "Private Bytes", instanceName: currentProcess);
-        ////            PerformanceCounter gen2Collections =
-        ////                new PerformanceCounter(categoryName: ".NET CLR Memory", counterName: "# Gen 2 Collections", instanceName: currentProcess);
-        ////            Debug.WriteLine("private bytes = " + privateBytes.NextValue());
-        ////            Debug.WriteLine("gen 2 collections = " + gen2Collections.NextValue());
-        //        }
+            return (secondValue + secondValue1 + secondValue2) / 3;
 
-        static string[] mesajlar;
+            //            string prcName = "chrome";
+            //            PerformanceCounter counter = new PerformanceCounter("Process", "Working Set - Private", prcName)
+            //Report.Info("MonAlbum  memory", (counter.RawValue / 1024).ToString("#,##0") + " KB");
+
+            ////var currentProcess = Process.GetCurrentProcess().ProcessName;
+            ////            PerformanceCounter privateBytes =
+            ////                new PerformanceCounter(categoryName: "Process", counterName: "Private Bytes", instanceName: currentProcess);
+            ////            PerformanceCounter gen2Collections =
+            ////                new PerformanceCounter(categoryName: ".NET CLR Memory", counterName: "# Gen 2 Collections", instanceName: currentProcess);
+            ////            Debug.WriteLine("private bytes = " + privateBytes.NextValue());
+            ////            Debug.WriteLine("gen 2 collections = " + gen2Collections.NextValue());
+        }
+
         static Task ConnectionHandler(MQTTnet.Client.Connecting.MqttClientConnectedEventArgs arg)
         {
             mqttClient.SubscribeAsync(new MqttClientSubscribeOptionsBuilder().WithTopicFilter(grName).Build()).GetAwaiter().GetResult();
-            //var message = "mesaj";
-            //mqttClient.PublishAsync(message, CancellationToken.None);
-
-            //mqttClient.UnsubscribeAsync(new MQTTnet.Client.Unsubscribing.MqttClientUnsubscribeOptionsBuilder().WithTopicFilter(grName).Build()).GetAwaiter().GetResult();
             return Task.CompletedTask;
         }
-
-
-        public static void DisconnectTopic()
-        {
-            mqttClient.UseDisconnectedHandler(DisconnectedHandler);
-        }
-
-        private static Task DisconnectedHandler(MqttClientDisconnectedEventArgs arg)
-        {
-            mqttClient.UnsubscribeAsync(new MQTTnet.Client.Unsubscribing.MqttClientUnsubscribeOptionsBuilder().WithTopicFilter(grName).Build()).GetAwaiter().GetResult();
-            return Task.CompletedTask;
-        }
-
-        static float isteMesaj;
 
         static async Task MessageHandler(MqttApplicationMessageReceivedEventArgs e)
         {
-            count++;
-            
-            isteMesaj = count / deneme;
-            if (topicler.Count == 0)
-            {
-                first = DateTime.Now.ToLongTimeString();
-            }
-            else
-            {
-                last = DateTime.Now.ToLongTimeString();
-            }
+            count++; speed = count / snCounter;
+
+            if (topicler.Count == 0) first = DateTime.Now.ToLongTimeString();
+
+            else last = DateTime.Now.ToLongTimeString();
+
 
             await Task.Run(() =>
             {
@@ -179,50 +164,22 @@ namespace ApiServer.Hubs
                 }
             });
 
-            var weatherForecast = new WeatherForecast
-            {
-                topicleri = { { e.ApplicationMessage.Topic } },
-                QoS = ((int)e.ApplicationMessage.QualityOfServiceLevel),
-                counti = count,
-                weat = "selam",
-
-            };
-
-
-
-            string fileName = "WeatherForecast.json";
-            string jsonString = JsonSerializer.Serialize(weatherForecast);
-            File.WriteAllText(fileName, jsonString);
-            //Console.WriteLine(File.ReadAllText(fileName));
-
-
-            #region asenkron
-            //string fileName = "WeatherForecast.json";
-            //using FileStream createStream = File.Create(fileName);
-            //await JsonSerializer.SerializeAsync(createStream, weatherForecast);
-            //await createStream.DisposeAsync(); 
-            #endregion
-
-
-
-
             girisCikisFarki = DateTime.Parse(last).Subtract(DateTime.Parse(first));
             calismaSuresi = girisCikisFarki.ToString();
             countSecond = 0;
-
-
-
         }
+
         #endregion
+
+
+        #region .NetConnect
 
         protected IHubContext<MqttHub> _context { get; }
 
         public MqttHub(IHubContext<MqttHub> context)
         {
-
             _context = context;
         }
-
 
         public override async Task OnConnectedAsync()
         {
@@ -244,7 +201,9 @@ namespace ApiServer.Hubs
             await _context.Clients.All.SendAsync("userLeaved", Context.ConnectionId);
         }
 
-        public async Task SendMessageAsync(string userName, string password, string serverName)
+        #endregion
+
+        public async Task SendConnectAsync(string userName, string password, string serverName)
         {
             #region definition
             username = userName;
@@ -252,10 +211,8 @@ namespace ApiServer.Hubs
             _serverName = serverName;
             #endregion
 
-            //await _context.Clients.All.SendAsync("mqttConnect", "true");
             ConnectClient();
 
-            
             if (mqttClient.IsConnected)
             {
                 await Clients.Caller.SendAsync("mqttConnect", "true");
@@ -265,6 +222,7 @@ namespace ApiServer.Hubs
                 await Clients.Caller.SendAsync("mqttConnect", "false");
             }
         }
+
         public async Task SendGroupNameAsync(string groupName)
         {
             await _context.Clients.All.SendAsync("groupName", groupName);
@@ -279,20 +237,30 @@ namespace ApiServer.Hubs
             Subscribe();
 
             var timerManager = new TimerManager(() =>
-                _context.Clients.All.SendAsync("topics", topicler, count, first, last, calismaSuresi, Math.Round(isteMesaj, 2), QoS, mesajlar)
+                _context.Clients.All.SendAsync("topics", topicler, count, first, last, calismaSuresi, Math.Round(speed, 2), QoS, mesajlar, CPUKullanimYuzdesiHesapla())
             );
 
             await _context.Clients.All.SendAsync("topics", topicler, count);
+
+            snCounter = 0;
             var timerYonetim = new TimerManager(() =>
-                deneme ++
+                snCounter++
             );
 
             count = 0;
         }
 
+        #region UnSubscribe
+
         public void cancel()
         {
             //mqttClient.UnsubscribeAsync(grName);
+            count = 0; first = ""; last = ""; calismaSuresi = ""; speed = 0; QoS = 0;
+            topicler.Clear();
+            for (int i = 0; i < mesajlar.Length; i++)
+            {
+                mesajlar[i] = "";
+            }
             mqttClient.UnsubscribeAsync(new MQTTnet.Client.Unsubscribing.MqttClientUnsubscribeOptionsBuilder().WithTopicFilter(grName).Build()).GetAwaiter().GetResult();
         }
 
@@ -301,9 +269,10 @@ namespace ApiServer.Hubs
             grName = groupName;
             cancel();
             topicler.Clear(); count = 0;
-            await _context.Clients.All.SendAsync("oldumu", "");
+            await _context.Clients.All.SendAsync("Unsubscribe", "");
         }
 
+        #endregion
 
         public async Task Publish(string topicName, string QoSName, string message)
         {

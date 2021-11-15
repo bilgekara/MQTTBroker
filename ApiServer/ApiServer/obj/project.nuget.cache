@@ -1,10 +1,21 @@
 {
   "version": 2,
-  "dgSpecHash": "EgBPAw1DpT4++5UWFE1p2owj9NFXe01Wq7MTbSiDo3h5QOK8bIXKAAKiKl40Z6xrL5h1piypajk7Rprg/jfmaw==",
+  "dgSpecHash": "BCqGSDwZdgZch+/Fhlfv3+eMVtzG4dkO8vcM9hRazXvGoMkpCqpX5ztIccEHTPtER6VlrdPnvOqFm4m7HZyOZg==",
   "success": true,
-  "projectFilePath": "C:\\Users\\karab\\Desktop\\9.11.2021\\ApiServer\\ApiServer\\ApiServer.csproj",
+  "projectFilePath": "C:\\Users\\karab\\Desktop\\ApiServer\\ApiServer\\ApiServer.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\karab\\.nuget\\packages\\mqttnet\\3.0.16\\mqttnet.3.0.16.nupkg.sha512"
+    "C:\\Users\\karab\\.nuget\\packages\\microsoft.win32.registry\\5.0.0\\microsoft.win32.registry.5.0.0.nupkg.sha512",
+    "C:\\Users\\karab\\.nuget\\packages\\microsoft.win32.systemevents\\6.0.0\\microsoft.win32.systemevents.6.0.0.nupkg.sha512",
+    "C:\\Users\\karab\\.nuget\\packages\\mqttnet\\3.0.16\\mqttnet.3.0.16.nupkg.sha512",
+    "C:\\Users\\karab\\.nuget\\packages\\system.configuration.configurationmanager\\6.0.0\\system.configuration.configurationmanager.6.0.0.nupkg.sha512",
+    "C:\\Users\\karab\\.nuget\\packages\\system.diagnostics.performancecounter\\6.0.0\\system.diagnostics.performancecounter.6.0.0.nupkg.sha512",
+    "C:\\Users\\karab\\.nuget\\packages\\system.drawing.common\\6.0.0\\system.drawing.common.6.0.0.nupkg.sha512",
+    "C:\\Users\\karab\\.nuget\\packages\\system.memory\\4.5.4\\system.memory.4.5.4.nupkg.sha512",
+    "C:\\Users\\karab\\.nuget\\packages\\system.security.accesscontrol\\6.0.0\\system.security.accesscontrol.6.0.0.nupkg.sha512",
+    "C:\\Users\\karab\\.nuget\\packages\\system.security.cryptography.protecteddata\\6.0.0\\system.security.cryptography.protecteddata.6.0.0.nupkg.sha512",
+    "C:\\Users\\karab\\.nuget\\packages\\system.security.permissions\\6.0.0\\system.security.permissions.6.0.0.nupkg.sha512",
+    "C:\\Users\\karab\\.nuget\\packages\\system.security.principal.windows\\5.0.0\\system.security.principal.windows.5.0.0.nupkg.sha512",
+    "C:\\Users\\karab\\.nuget\\packages\\system.windows.extensions\\6.0.0\\system.windows.extensions.6.0.0.nupkg.sha512"
   ],
   "logs": []
 }

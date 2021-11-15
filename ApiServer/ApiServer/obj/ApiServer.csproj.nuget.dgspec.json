@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\karab\\Desktop\\9.11.2021\\ApiServer\\ApiServer\\ApiServer.csproj": {}
+    "C:\\Users\\karab\\Desktop\\ApiServer\\ApiServer\\ApiServer.csproj": {}
   },
   "projects": {
-    "C:\\Users\\karab\\Desktop\\9.11.2021\\ApiServer\\ApiServer\\ApiServer.csproj": {
+    "C:\\Users\\karab\\Desktop\\ApiServer\\ApiServer\\ApiServer.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\karab\\Desktop\\9.11.2021\\ApiServer\\ApiServer\\ApiServer.csproj",
+        "projectUniqueName": "C:\\Users\\karab\\Desktop\\ApiServer\\ApiServer\\ApiServer.csproj",
         "projectName": "ApiServer",
-        "projectPath": "C:\\Users\\karab\\Desktop\\9.11.2021\\ApiServer\\ApiServer\\ApiServer.csproj",
+        "projectPath": "C:\\Users\\karab\\Desktop\\ApiServer\\ApiServer\\ApiServer.csproj",
         "packagesPath": "C:\\Users\\karab\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\karab\\Desktop\\9.11.2021\\ApiServer\\ApiServer\\obj\\",
+        "outputPath": "C:\\Users\\karab\\Desktop\\ApiServer\\ApiServer\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\karab\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -43,6 +43,10 @@
             "MQTTnet": {
               "target": "Package",
               "version": "[3.0.16, )"
+            },
+            "System.Diagnostics.PerformanceCounter": {
+              "target": "Package",
+              "version": "[6.0.0, )"
             }
           },
           "imports": [
