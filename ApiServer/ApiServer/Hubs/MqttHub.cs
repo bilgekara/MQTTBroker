@@ -175,7 +175,6 @@ namespace ApiServer.Hubs
         {
             var Id = Guid.NewGuid().ToString();
             await _context.Clients.All.SendAsync("gUid", Id);
-
             clients.Add(Context.ConnectionId);
             await _context.Clients.All.SendAsync("clients", clients);
             await _context.Clients.All.SendAsync("userJoined", Context.ConnectionId);

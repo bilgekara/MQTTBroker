@@ -1,0 +1,8 @@
+version: '3.4'
+
+services:
+  apiserver:
+    image: ${DOCKER_REGISTRY-}apiserver
+    build:
+      context: .
+      dockerfile: ApiServer/Dockerfile
