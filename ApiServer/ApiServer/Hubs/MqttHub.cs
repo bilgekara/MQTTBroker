@@ -17,16 +17,6 @@ using System.IO;
 
 namespace ApiServer.Hubs
 {
-
-    public class WeatherForecast
-    {
-        public List<string> topicleri = new List<string>();
-        public int QoS { get; set; }
-        public float counti { get; set; }
-        public string weat { get; set; }
-    }
-
-
     public class MqttHub : Hub
     {
         // bakelor/pr14/prod/+/s
@@ -87,7 +77,7 @@ namespace ApiServer.Hubs
         public static void Subscribe()
         {
 
-            var options = new MqttClientOptionsBuilder().WithTcpServer("a2.pr14.bakelor.com").WithCredentials("drony", "drony").WithCleanSession().Build();
+            var options = new MqttClientOptionsBuilder().WithTcpServer(_serverName).WithCredentials(username, passw).WithCleanSession().Build();
             var factory = new MqttFactory();
 
             mqttClient = factory.CreateMqttClient();

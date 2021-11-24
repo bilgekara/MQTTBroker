@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "BCqGSDwZdgZch+/Fhlfv3+eMVtzG4dkO8vcM9hRazXvGoMkpCqpX5ztIccEHTPtER6VlrdPnvOqFm4m7HZyOZg==",
+  "dgSpecHash": "5GqQob4Zmm8YUrMhNjPL9m55LA1694+XpDCiJ5vICyM37kmMxGMxLn3jO9omYpNf/f64IEX3ll8PZfiMM0LDoA==",
   "success": true,
-  "projectFilePath": "C:\\Users\\karab\\Desktop\\ApiServer\\ApiServer\\ApiServer.csproj",
+  "projectFilePath": "C:\\Users\\karab\\Documents\\GitHub\\MQTTBroker\\ApiServer\\ApiServer\\ApiServer.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\karab\\.nuget\\packages\\microsoft.win32.registry\\5.0.0\\microsoft.win32.registry.5.0.0.nupkg.sha512",
     "C:\\Users\\karab\\.nuget\\packages\\microsoft.win32.systemevents\\6.0.0\\microsoft.win32.systemevents.6.0.0.nupkg.sha512",

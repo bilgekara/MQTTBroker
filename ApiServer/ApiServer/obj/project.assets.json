@@ -619,11 +619,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\karab\\Desktop\\ApiServer\\ApiServer\\ApiServer.csproj",
+      "projectUniqueName": "C:\\Users\\karab\\Documents\\GitHub\\MQTTBroker\\ApiServer\\ApiServer\\ApiServer.csproj",
       "projectName": "ApiServer",
-      "projectPath": "C:\\Users\\karab\\Desktop\\ApiServer\\ApiServer\\ApiServer.csproj",
+      "projectPath": "C:\\Users\\karab\\Documents\\GitHub\\MQTTBroker\\ApiServer\\ApiServer\\ApiServer.csproj",
       "packagesPath": "C:\\Users\\karab\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\karab\\Desktop\\ApiServer\\ApiServer\\obj\\",
+      "outputPath": "C:\\Users\\karab\\Documents\\GitHub\\MQTTBroker\\ApiServer\\ApiServer\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\karab\\AppData\\Roaming\\NuGet\\NuGet.Config",
