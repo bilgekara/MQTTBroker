@@ -1,13 +1,9 @@
 <div *ngIf="signalDurumu=='Waiting connection....' || signalDurumu == 'Reconnecting' || signalDurumu == 'Connection Closed'; then con_try else con_success"> </div>
 <div *ngIf="getMqttConnect() == 'true' && getCookie()!=''; then userExist else userNonExist"></div>
 
-
-
-
-
-
   <!-- user exist -->
   <ng-template #userExist>
+
     <!-- connect -->
     <div class="row">
       
@@ -40,23 +36,21 @@
     <mat-tab-group>
 
       <mat-tab label="Subscribe">
+        
+        <!-- topic gonderme -->
         <mat-grid-list cols="12" rowHeight="100px">
           <!-- url -->
-          <mat-grid-tile
-            [colspan]="9"
-            [rowspan]="1"
-          >
+          <mat-grid-tile [colspan]="9" [rowspan]="1" >
+
             <mat-form-field class="my-full-width  mt-4" appearance="fill">
               <input matInput class="my-full-width" [(ngModel)]="url">
             </mat-form-field>
           
             <br><br><br>           
           </mat-grid-tile>
+
           <!-- subscribe button -->
-          <mat-grid-tile
-            [colspan]="3"
-            [rowspan]="1"
-          >
+          <mat-grid-tile [colspan]="3" [rowspan]="1" >
             <div class = "row">
               <button (click)="sendMessage()" class="glow-on-hover" type="button">Subscribe</button>
             </div>
@@ -65,15 +59,13 @@
         </mat-grid-list>      
 
         <mat-list>
-          <mat-list-item>Mesaj : {{bendenemeyim}} </mat-list-item>
+          <mat-list-item>Mesaj : {{bendenemeyim | basic : 100}} </mat-list-item>
           <mat-divider></mat-divider>
         </mat-list>
 
-        <!-- <div class="card">
-    
-        </div> -->
-        <!-- Get Group Name -->
         <div class="row">
+
+          <!-- Get Topic Name -->
           <div class="col-sm-6">
             <div  *ngIf="clickSubscribe == true"  class="card" style="width: 18rem;"> 
               <ul *ngFor="let item of getGroup()"  class="list-group list-group-flush">
@@ -83,41 +75,40 @@
                 </li>
               </ul>
           </div>
-        </div>
-
-       
-        
-
-        <!-- table -->
-        <div *ngIf="clickSubscribe == true" class="col-sm-6">
-          <div #container class="card container" >
-            <table class="table">
-              <thead>
-                <tr>
-                  <th scope="col">First</th>
-                  <th scope="col">Last</th>
-                  <th scope="col">Duration</th>
-                  <th scope="col">Count</th>
-                  <th scope="col">Speed</th>
-                  <th scope="col">QoS</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr *ngFor="let item of getTopic()">
-                  <td>{{ firstTime }}</td>
-                  <td>{{ lastTime }}</td>
-                  <td>{{ duration }}</td>
-                  <td>{{ count }}</td>
-                  <td>{{ speedSecond }}</td>
-                  <td>{{ QoS }}</td>
-                </tr>
-              </tbody>
-            </table>
           </div>
+
+          <!-- Topic Proporties -->
+          <div *ngIf="clickSubscribe == true" class="col-sm-6">
+            <div #container class="card container" >
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th scope="col">First</th>
+                    <th scope="col">Last</th>
+                    <th scope="col">Duration</th>
+                    <th scope="col">Count</th>
+                    <th scope="col">Speed</th>
+                    <th scope="col">QoS</th>
+                    <th scope="col">CPU</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let item of getTopics()">
+                    <td>{{ item.firstTime }}</td>
+                    <td>{{ item.lastTime }}</td>
+                    <td>{{ item.calismaSuresi }}</td>
+                    <td>{{ item.count }}</td>
+                    <td>{{ item.speedSecond }}</td>
+                    <td>{{ item.QoS }}</td>
+                    <td>{{ item.cpuYuzde }}</td>
+                    
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
         </div>
-
-    </div>
-
 
       </mat-tab>
 

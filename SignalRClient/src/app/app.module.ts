@@ -30,6 +30,7 @@ import { MainComponent } from './main/main.component';
 import { CookieService } from 'ngx-cookie-service';
 import { HttpClientModule } from '@angular/common/http';
 import {MatSelectModule} from '@angular/material/select';
+import { BasicPipe } from './pipes/basic/basic.pipe';
 
 
 @NgModule({
@@ -38,6 +39,7 @@ import {MatSelectModule} from '@angular/material/select';
     NavbarComponent,
     Content1Component,
     MainComponent,
+    BasicPipe,
   ],
   imports: [
     BrowserModule,

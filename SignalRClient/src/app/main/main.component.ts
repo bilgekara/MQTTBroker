@@ -3,6 +3,8 @@ import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import * as signalR from '@microsoft/signalr';
 import { CookieService } from 'ngx-cookie-service';
 import { uid } from 'uid';
+import { Topic } from '../models/topic';
+import { TopicRepository } from '../models/topic.repository';
 
 interface group{
   groupName: string
@@ -12,12 +14,16 @@ interface topics{
   topic: string
 }
 
+interface topicsa{
+  mqttTopic: any, count: any, firstTime: any, lastTime: any, calismaSuresi: any, speedSecond: any, QoS: any, mesajlar: any, cpuYuzde: any
+}
 
 @Component({
   selector: 'app-main',
   templateUrl: './main.component.html',
   styleUrls: ['./main.component.css']
 })
+
 export class MainComponent implements OnInit, OnDestroy{
 
   public signalDurumu: any = "Waiting Connection..."
@@ -26,7 +32,11 @@ export class MainComponent implements OnInit, OnDestroy{
   //interface
   groups: group[] = [] 
   topics: topics[] = []
+  topicsaa: topicsa[] = []
   MyClient: any[] = []
+
+  movies: Topic[];
+ topicRepository: TopicRepository;
 
   connection; totalClient: number;
 
@@ -38,24 +48,16 @@ export class MainComponent implements OnInit, OnDestroy{
  
   toppings: FormGroup;
 
-
+  
   constructor( private cookie: CookieService, fb: FormBuilder ) {
     this.connection = new signalR.HubConnectionBuilder()
     .withUrl("http://localhost:5000/mqtthub")
     .withAutomaticReconnect()
-    .build();
-
-    this.toppings = fb.group({
-      jsonCheck: false,
-    });
-   console.log("djfvbg",fb.group);
-    
+    .build();    
   }
 
   
   ngOnInit(): void {
-
-
     this.startConnection();
     this.connectMqtt();
     this.gruplarıGetir();
@@ -133,9 +135,9 @@ export class MainComponent implements OnInit, OnDestroy{
     localStorage.setItem('serverName',this.serverName);
 
 
-    this.connection.send("SendMessageAsync", this.getLocalStorageName(), this.getLocalStoragePassw(), this.getLocalStorageServer())
+    this.connection.send("SendConnectAsync", this.getLocalStorageName(), this.getLocalStoragePassw(), this.getLocalStorageServer())
     .then(() => {
-        console.log("SendMessageAsync"); 
+        console.log("SendConnectAsync"); 
     })
     .catch((error: any): void => console.log(`mesaj gonderillirken hata olustu. ${error}`));
     
@@ -182,17 +184,30 @@ export class MainComponent implements OnInit, OnDestroy{
     .catch((error: any): void => console.log(`mesaj gonderillirken hata olustu. ${error}`));
     
     this.connection.on("topics",
-    (mqttTopic: any, count: any, firstTime: any, lastTime: any, calismaSuresi: any, speedSecond: any, QoS: any, mesajlar: any) => 
+    (mqttTopic: any, count: any, firstTime: any, lastTime: any, calismaSuresi: any, speedSecond: any, QoS: any, mesajlar: any, cpuKullanimYuzde: any) => 
     {
-      console.log("calissana artiiik");
       this.topics.pop();
       this.count = count; this.lastTime = lastTime; this.firstTime = firstTime;
       this.duration = calismaSuresi; this.QoS = QoS; this.speedSecond = speedSecond;
       this.topics.push({
         topic: mqttTopic
       })
-      console.log("dmks -> ", mesajlar);
-      this.bendenemeyim = mesajlar;
+      this.bendenemeyim = '';
+      for (let index = 0; index < mesajlar.length; index++) {
+        const element = mesajlar[index];
+        this.bendenemeyim += element;
+      }
+      for (let index = 0; index < this.groups.length + 1; index++) {
+        this.topicsaa.splice(index, 1);
+        
+      }
+      // this.topicsaa.pop();
+      
+      this.topicsaa.push({
+        mqttTopic: mqttTopic, count: count, firstTime: firstTime, lastTime: lastTime, calismaSuresi: calismaSuresi,
+         speedSecond: speedSecond, QoS: QoS, mesajlar: mesajlar, cpuYuzde: cpuKullanimYuzde
+      })
+      
     });
   }
 
@@ -214,9 +229,18 @@ export class MainComponent implements OnInit, OnDestroy{
     })
     .catch((error: any): void => console.log(`mesaj gonderillirken hata olustu. ${error}`));
 
-    this.connection.on("oldumu", (mqttTopic: any) => {
-      console.log("oldumu");
+    this.connection.on("Unsubscribe", (mqttTopic: any) => {
+      console.log("Unsubscribe");
     });
+
+    this.topicsaa.forEach( (item, index) => {
+      // if(item.groupName == grupAdi){
+      //   this.groups.splice(index,1);
+      // }
+      this.topicsaa.pop();
+      console.log("index->",index);
+    });
+
   }
 
   Mute(grupAdi: string){
@@ -232,8 +256,8 @@ export class MainComponent implements OnInit, OnDestroy{
       })
       .catch((error: any): void => console.log(`mesaj gonderillirken hata olustu. ${error}`));
   
-      this.connection.on("oldumu", (mqttTopic: any) => {
-        console.log("oldumu");
+      this.connection.on("Unsubscribe", (mqttTopic: any) => {
+        console.log("Unsubscribe");
       });
       this.clickMute = true;
     }
@@ -248,10 +272,6 @@ export class MainComponent implements OnInit, OnDestroy{
         console.log("Publish->"); 
       })
       .catch((error: any): void => console.log(`mesaj gonderillirken hata olustu. ${error}`));
-  
-      this.connection.on("oldumu", (mqttTopic: any) => {
-        console.log("oldumu");
-      });
   }
 
   logOut(){
@@ -262,11 +282,15 @@ export class MainComponent implements OnInit, OnDestroy{
   }
 
   getGroup(): group[] {
-    return this.groups.filter(i=>i) ;
+    return this.groups;
   }
 
   getTopic(): topics[]{
-    return this.topics.filter(i=>i);
+    return this.topics;
+  }
+
+  getTopics(): topicsa[]{
+    return this.topicsaa.filter( i=>i.count !== 0);
   }
 
 
