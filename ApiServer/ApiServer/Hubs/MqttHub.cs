@@ -11,7 +11,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Timers;
 using System.Threading.Tasks;
-using System.Diagnostics;  // Bu kodu kütüphaneye ekliyoruz.
+ using System.Diagnostics; // Bu kodu kütüphaneye ekliyoruz.
 using System.Text.Json;
 using System.IO;
 
@@ -89,40 +89,40 @@ namespace ApiServer.Hubs
         }
 
 
-        public object CPUKullanimYuzdesiHesapla()
-        {
+        //public object CPUKullanimYuzdesiHesapla()
+        //{
 
-            PerformanceCounter cpuCounter = new PerformanceCounter();
+        //    PerformanceCounter cpuCounter = new PerformanceCounter();
 
-            cpuCounter.CategoryName = "Processor";
+        //    cpuCounter.CategoryName = "Processor";
 
-            cpuCounter.CounterName = "% Processor Time";
-            cpuCounter.InstanceName = "_Total";
+        //    cpuCounter.CounterName = "% Processor Time";
+        //    cpuCounter.InstanceName = "_Total";
 
-            dynamic firstValue = cpuCounter.NextValue();
-            System.Threading.Thread.Sleep(1000);
-            dynamic secondValue = cpuCounter.NextValue();
+        //    dynamic firstValue = cpuCounter.NextValue();
+        //    System.Threading.Thread.Sleep(1000);
+        //    dynamic secondValue = cpuCounter.NextValue();
 
-            System.Threading.Thread.Sleep(1000);
-            dynamic secondValue1 = cpuCounter.NextValue();
+        //    System.Threading.Thread.Sleep(1000);
+        //    dynamic secondValue1 = cpuCounter.NextValue();
 
-            System.Threading.Thread.Sleep(1000);
-            dynamic secondValue2 = cpuCounter.NextValue();
+        //    System.Threading.Thread.Sleep(1000);
+        //    dynamic secondValue2 = cpuCounter.NextValue();
 
-            return (secondValue + secondValue1 + secondValue2) / 3;
+        //    return (secondValue + secondValue1 + secondValue2) / 3;
 
-            //            string prcName = "chrome";
-            //            PerformanceCounter counter = new PerformanceCounter("Process", "Working Set - Private", prcName)
-            //Report.Info("MonAlbum  memory", (counter.RawValue / 1024).ToString("#,##0") + " KB");
+        //    //            string prcName = "chrome";
+        //    //            PerformanceCounter counter = new PerformanceCounter("Process", "Working Set - Private", prcName)
+        //    //Report.Info("MonAlbum  memory", (counter.RawValue / 1024).ToString("#,##0") + " KB");
 
-            ////var currentProcess = Process.GetCurrentProcess().ProcessName;
-            ////            PerformanceCounter privateBytes =
-            ////                new PerformanceCounter(categoryName: "Process", counterName: "Private Bytes", instanceName: currentProcess);
-            ////            PerformanceCounter gen2Collections =
-            ////                new PerformanceCounter(categoryName: ".NET CLR Memory", counterName: "# Gen 2 Collections", instanceName: currentProcess);
-            ////            Debug.WriteLine("private bytes = " + privateBytes.NextValue());
-            ////            Debug.WriteLine("gen 2 collections = " + gen2Collections.NextValue());
-        }
+        //    ////var currentProcess = Process.GetCurrentProcess().ProcessName;
+        //    ////            PerformanceCounter privateBytes =
+        //    ////                new PerformanceCounter(categoryName: "Process", counterName: "Private Bytes", instanceName: currentProcess);
+        //    ////            PerformanceCounter gen2Collections =
+        //    ////                new PerformanceCounter(categoryName: ".NET CLR Memory", counterName: "# Gen 2 Collections", instanceName: currentProcess);
+        //    ////            Debug.WriteLine("private bytes = " + privateBytes.NextValue());
+        //    ////            Debug.WriteLine("gen 2 collections = " + gen2Collections.NextValue());
+        //}
 
         static Task ConnectionHandler(MQTTnet.Client.Connecting.MqttClientConnectedEventArgs arg)
         {
@@ -217,7 +217,7 @@ namespace ApiServer.Hubs
             await _context.Clients.All.SendAsync("groupName", groupName);
         }
 
-        public async Task ListenerGroupAsync(string groupName)
+        public  async Task ListenerGroupAsync(string groupName)
         {
             #region definition
             grName = groupName;
@@ -226,7 +226,7 @@ namespace ApiServer.Hubs
             Subscribe();
 
             var timerManager = new TimerManager(() =>
-                _context.Clients.All.SendAsync("topics", topicler, count, first, last, calismaSuresi, Math.Round(speed, 2), QoS, mesajlar, CPUKullanimYuzdesiHesapla())
+                _context.Clients.All.SendAsync("topics", topicler, count, first, last, calismaSuresi, Math.Round(speed, 2), QoS, mesajlar, "")
             );
 
             await _context.Clients.All.SendAsync("topics", topicler, count);
